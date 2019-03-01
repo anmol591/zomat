@@ -1,0 +1,10 @@
+<div id="error_display"></div>
+
+<div id="locationField">
+<%= form_for :item, :url => {:action=>'display_cuisines'},:method =>'post' do |f|%>
+Enter location &nbsp;&nbsp; <%= f.text_field :location, :id=>"autocomplete",:placeholder=>"",:onFocus=>"geolocate()" %>
+<input type="hidden" value="" name="lat" id="lat_input" />
+<input type="hidden" value="" name="long" id="lang_input" />
+<%= f.submit 'submit', data: { disable_with: false }%>
+<% end %>
+</div>

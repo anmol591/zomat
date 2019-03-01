@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zomat</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
+    
+
+  </head>
+
+  <body>
+  <% if user_signed_in? %>
+
+  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+  
+  <%end%>
+  
+    <%= yield %>
+<%-# link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path%>
+  </body>
+ <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAiCQhci5x5QDbgMMZHQrIRgKkNWoYa3Vc&libraries=places&callback=initAutocomplete' %>
+</html>

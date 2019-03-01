@@ -1,0 +1,27 @@
+<div id="displaybox">
+  <h5>Choose category to proceed</h5>
+  <%if @cat.present? %>
+    <%= form_for :category, :url=>{:action=>'search_restaurants'}, :method=>'post' do |f| -%>
+      
+        <% @cat[:categories].each do |cat|%>
+          
+            <% @id=cat[:categories][:id] %>
+            <% @name=cat[:categories][:name] %>
+            
+            <p><%= f.radio_button :name, @id%>
+            <%= f.label :name, @name, :value =>@name %></p>
+      <% end %>
+      
+      <input type="hidden" value='<%= @lat %>' name="lat" id="lat_input" />
+      <input type="hidden" value='<%= @lng %>' name="long" id="lang_input" />
+      <input type="hidden" value='<%= @location %>' name="loc" id="location" />
+      <input type="hidden" value='<%= @city_id %>' name="city_id" id="location" />
+      <% @cuisines_id.each do |id|%>
+      <input type="hidden" name="cuisines[id][]" value="<%= id %>">
+      <% end %>
+      <%= f.submit 'Proceed', data: { disable_with: false }%>
+     <% end %>
+  <% else %>
+    <p>No categories to show</p>
+  <% end %>
+</div>

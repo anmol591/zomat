@@ -1,0 +1,23 @@
+<div id="cuisineBox">
+<h5>Choose cuisines to proceed</h5>
+<% if @cuisines.present?  %>
+<%= form_for :cuisines, :url=>{:action=>'display_categories'}, :method=>'post' do%>
+    <% count=1 %>
+    <% @cuisines[:cuisines].each do |val| %>
+          <% if count <= 38  %>
+            <% @cui_name=val[:cuisine][:cuisine_name] %>
+            <% @cui_id=val[:cuisine][:cuisine_id] %>
+            <p><input type="checkbox" name="cuisines[id][]" value="<%= @cui_id%>"><%= @cui_name %></p>
+            <% count = count + 1 %>
+          <% end %>
+    <% end %>
+      <p><input type="hidden" value='<%= @lat %>' name="lat" id="lat_input" /></p>
+      <p><input type="hidden" value='<%= @lng %>' name="long" id="lang_input" /></p>
+      <p><input type="hidden" value='<%= @location %>' name="loc" id="location" /></p>
+      <p><input type="hidden" value='<%= @city_id %>' name="city_id" id="city" /></p>
+    <p><input type="submit" value="Proceed"></p>
+<% end  %>
+<% else  %>
+  <p>Sorry,No cuisines to show</p>
+<% end %>
+</div>

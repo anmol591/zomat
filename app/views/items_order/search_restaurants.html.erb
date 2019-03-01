@@ -1,0 +1,14 @@
+<div>
+	<h5>Choose restaurants to proceed</h5>
+	<%= form_for :restaurants, :url=>{:action=>'place_order'}, :method=>'post' do%>
+	<% @restaurants_list[:restaurants].each do |val| %>
+		<% @restaurant_name=val[:restaurant][:name] %>
+		<% @restaurant_address= val[:restaurant][:location][:address] %>
+		<% @average_cost_for_two= val[:restaurant][:average_cost_for_two]%>
+		<% @rating= val[:restaurant][:user_rating][:rating_text]%>
+		<p><input type="radio" name="restaurant" value="<%= @restaurant_name %>"><%= @restaurant_name%>&nbsp;<b>Location:</b><%= @restaurant_address %>&nbsp;<b>Average cost:</b>Rs&nbsp;<%= @average_cost_for_two %>&nbsp;<b>Rating:</b><%= @rating %></p>
+	<% end %>
+	<p><input type="hidden" value='<%= @location %>' name="loc" id="location" /></p>
+	<p><input type="submit" value="Place Order"></p>
+	<% end %>
+</div>
